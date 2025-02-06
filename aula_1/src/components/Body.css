@@ -1,0 +1,6 @@
+.conteiner-body {
+  /* background-color: #f8f9fa; */
+  min-height: calc(100vh - 135px);
+  display: flex;
+  justify-content: center;
+}

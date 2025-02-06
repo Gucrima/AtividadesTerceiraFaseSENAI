@@ -1,0 +1,6 @@
+.conteiner-header {
+  background-color: #4b8ed1;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+}
