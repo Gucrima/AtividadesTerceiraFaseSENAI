@@ -43,17 +43,18 @@ app.post('/tarefas', (req, res) => {
 // })
 
 // exemplo da Professora
+
 app.delete('/tarefas/:id', (req, res) => {
     const { id } = req.params;
     const index = tarefas.findIndex(t => t.id === parseInt(id));
-
-    if (index === -1) {
-        return res.status(404).json({ mensagem: 'Tarefa não encontrada' });
+    if (index !== -1) {
+        tarefas.splice(index, 1);
+        res.json({ mensagem: 'Tarefa removida com sucesso' });
+    } else {
+        res.status(404).json({ mensagem: 'Tarefa não encontrada' });
     }
-
-    tarefas.splice(index, 1);
-    res.status(204).send();
 })
+
 
 
 // meu codigo
