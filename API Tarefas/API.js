@@ -43,22 +43,17 @@ app.post('/tarefas', (req, res) => {
 // })
 
 // exemplo da Professora
-
 app.delete('/tarefas/:id', (req, res) => {
     const { id } = req.params;
-   
-    const tarefa = tarefas.find(t => t.id === parseInt(id));
+    const index = tarefas.findIndex(t => t.id === parseInt(id));
 
-    if (!tarefa) {
+    if (index === -1) {
         return res.status(404).json({ mensagem: 'Tarefa não encontrada' });
     }
 
-    tarefas = tarefas.filter(t => t.id !== parseInt(id));
-    res.json({ mensagem: 'Tarefa removida com sucesso' });
+    tarefas.splice(index, 1);
+    res.status(204).send();
 })
-
-
-
 
 
 // meu codigo
@@ -75,7 +70,6 @@ app.delete('/tarefas/:id', (req, res) => {
 // })
 
 // exemplo da Professora
-
 app.put('/tarefas/:id', (req, res) => {
     const { id } = req.params;
     const { descricao } = req.body;
@@ -90,4 +84,7 @@ app.put('/tarefas/:id', (req, res) => {
     res.json(tarefa);
 })
 
-
+// iniciar o servidor
+app.listen(port, () => { // Inicia o servidor
+    console.log(`Servidor rodando na porta ${port}`);
+})
